@@ -10,20 +10,17 @@ const app = express();
 mongoose.connect('mongodb://localhost:27017/valKilFilmdb');
 
 
-const recipeSchema = new mongoose.Schema({
-  name: {type: String, require: true, trim:true, lowercase: true, unique: true},
-  ingredients:[{
-    quantity: { type: String, required: true,},
-    type:{type: String, lowercase: true, trim:true},
-    name: {type: String, require: true, trim:true, lowercase: true}
-  }],
-  timers:[Number],
-  steps:[{type:String, required:true}],
-  originalURL:{type:String},
-  imageURL:String
+const valKilSchema = new mongoose.Schema({
+  title: { type: String, required: true, unique: true},
+  director: String,
+  writer: String,
+  character: String,
+  year: Number,
+  genre: String,
+  synopsis: String,
+  gross: String,
+  photo:String
 });
-
-
 
 const Film = mongoose.model('Valfilm',valKilSchema);
 
