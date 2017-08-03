@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ValKilmer.com</title>
+    <link rel="stylesheet" href="valKilm.css">
+  </head>
+  <body>
+    <h1>Valkilmer.com</h1>
+    <div class = "filmContainer">
+      {{ #films }}
+      <div class = 'robotProfile'>
+        <img src = {{photo}} alt = {{character}}>
+        <h2>{{ title }}</h2>
+        {{character}}
+      </div>
+      {{ /films }}
+    </div>
+    </ul>
+  </body>
+</html>
