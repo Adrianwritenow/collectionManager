@@ -26,17 +26,17 @@ const valKilSchema = new mongoose.Schema({
 });
 
 const Film = mongoose.model('Valfilm',valKilSchema);
-
-var findVal = function(db,callback){
-  Film.find().toArray(function(err, result) {
-   console.log("found ",result.length, " films");
-   callback(result);
-});
-}
+//
+// var findVal = function(db,callback){
+//   Film.find().then(function(result)
+//    console.log("found ",result.length, " films");
+//    callback(result);
+// });
+// }
 
 app.get('/', function(request, response){
-    findVal(function(result){
-      response.render('kilmerFilms', {films:result});
+  Film.find().then(function(films) {
+      response.render('kilmerFilms',{films});
   });
 });
 
