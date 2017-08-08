@@ -13,6 +13,13 @@ app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');
 
+app.get('/', function(request, response){
+  Film.find().then(function(films) {
+      response.render('kilmerFilms',{films});
+  });
+});
+
+
 const valKilSchema = new mongoose.Schema({
   title: { type: String, required: true, unique: true},
   director: String,
@@ -26,18 +33,23 @@ const valKilSchema = new mongoose.Schema({
 });
 
 const Film = mongoose.model('Valfilm',valKilSchema);
-//
-// var findVal = function(db,callback){
-//   Film.find().then(function(result)
-//    console.log("found ",result.length, " films");
-//    callback(result);
-// });
-// }
 
-app.get('/', function(request, response){
-  Film.find().then(function(films) {
-      response.render('kilmerFilms',{films});
-  });
+var film = new Film();
+  film.title= "Heat",
+   film.writer='Michael Mann',
+   film.director= 'Michael Mann',
+   film.year = '1995',
+   film.characrter = "Chris Shiherlis",
+   film.genre = "Action",
+   film.synopsis= "A bank robber trys to survive an ass grabbing maniac",
+   film.gross ="$67,436,818",
+   film.photo = "https://i.ytimg.com/vi/b60-sEXUPBY/maxresdefault.jpg"
+
+
+film.save().then(function(){
+  console.log("I'll be your Huckelberry");
+}).catch(function(){
+  console.log("You\'re no daisy at All!");
 });
 
 
